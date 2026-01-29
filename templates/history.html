@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="mb-3">📜 URL History</h3>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Original URL</th>
+            <th>Short URL</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for url in urls %}
+        <tr>
+            <td>{{ url.original_url }}</td>
+            <td>
+                <a href="/{{ url.short_code }}" target="_blank">
+                    {{ request.host_url }}{{ url.short_code }}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

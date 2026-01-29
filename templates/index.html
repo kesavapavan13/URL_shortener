@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card shadow p-4">
+    <h3 class="mb-3">🔗 URL Shortener</h3>
+
+    <form method="POST">
+        <input type="text" name="url" class="form-control mb-3" placeholder="Enter long URL" required>
+        <button class="btn btn-primary w-100">Shorten URL</button>
+    </form>
+
+    {% if short_url %}
+    <hr>
+    <label>Shortened URL</label>
+    <div class="input-group">
+        <input type="text" id="shortUrl" class="form-control" value="{{ short_url }}" readonly>
+        <button class="btn btn-success" onclick="copyURL()">Copy</button>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function copyURL() {
+    let copyText = document.getElementById("shortUrl");
+    copyText.select();
+    document.execCommand("copy");
+    alert("Copied to clipboard!");
+}
+</script>
+
+{% endblock %}
